@@ -1,0 +1,87 @@
+extends html
+
+block body
+	div.container#profile(ng-controller="ProfileCtrl", userid=req.user.id, ng-cloak)
+
+		//Profile
+		form.row(name='myform')
+			.col-xs-12.col-sm-6.col-md-4
+				img.img-responsive(src="{{user.pic}}")
+
+			.col-xs-12.col-sm-6.col-md-4
+				.form-group(ng-class="{'has-error': myform.name.$invalid}")
+					label(for='name') Username
+					.input-group
+						span.input-group-addon
+							span.glyphicon.glyphicon-user
+						input.form-control#name(type='text', placeholder='Username', name='name',
+							ng-model='edituser.name', ng-blur="save()",
+							ng-required='true', ng-minlength='3', ng-maxlength='20')
+
+				.form-group
+					label I am / We are
+					br
+					.btn-group
+						label.btn.btn-primary(ng-model="edituser.isa", btn-radio="'man'", ng-change="save()") Man
+						label.btn.btn-primary(ng-model="edituser.isa", btn-radio="'woman'", ng-change="save()") Woman
+						label.btn.btn-primary(ng-model="edituser.isa", btn-radio="'couple'", ng-change="save()") Couple
+
+				.form-group.form-inline
+					label Age
+					br
+					.input-group(ng-if="edituser.isa == 'man' || edituser.isa == 'couple'")
+						span.input-group-addon His
+						select.form-control(selectpicker="", ng-model="edituser.hisAge", data-max-options='1', ng-change="save()", data-width='auto')
+							option(ng-repeat="age in ages") {{age}}
+					span &nbsp;
+					.input-group(ng-if="edituser.isa == 'woman' || edituser.isa == 'couple'")
+						span.input-group-addon Hers
+						select.form-control(selectpicker="", ng-model="edituser.herAge", data-max-options='1', ng-change="save()", data-width='auto')
+							option(ng-repeat="age in ages") {{age}}
+
+				.form-group.form-inline(title="{{edituser.locationName || 'Empty'}}")
+					label Location
+					br
+					span.input-group
+						span.input-group-addon lat, lng
+						input.form-control(type='text', ng-model="edituser.lat", ng-readonly="true", style='width:50%;')
+						input.form-control(type='text', ng-model="edituser.lng", ng-readonly="true", style='width:50%;')
+						span.input-group-btn
+							button.btn.btn-primary(ng-click="updateLocation()") Update
+				.alert(role="alert", ng-class="edituser.locationName ? 'alert-info' : 'alert-warning'") {{edituser.locationName || 'Location required for search'}}
+
+			.col-xs-12.col-md-4
+				.form-group
+					label(for='about-us') About {{edituser.isa=='couple' ? 'Us' : 'Me'}}
+					textarea.form-control#about-us(ng-model="edituser.about", ng-blur="save()", rows=5)
+				.form-group
+					label(for='looking-for') Looking For
+					textarea.form-control#looking-for(ng-model="edituser.lookingFor", ng-blur="save()", rows=5)
+
+		div(ng-if="pics.length")
+			hr
+			.pics.slider
+				img.slide(ng-repeat="pic in pics", ng-swipe-right="showPrev()", ng-swipe-left="showNext()", ng-show="isActive($index)", ng-src="{{pic.url}}")
+				a.arrow.prev(ng-click="showPrev()")
+				a.arrow.next(ng-click="showNext()")
+				ul.nav
+					li(ng-repeat="pic in pics", ng-class="{'active':isActive($index)}")
+						img(src="{{pic.url}}", alt="{{pic.description}}", title="{{pic.description}}", ng-click="showPic($index)")
+
+			.text-center
+				.btn.btn-success(ng-click="makePicPrimary()") Make Primary
+				span &nbsp;
+				.btn.btn-danger(ng-click="deletePic()") Delete
+		hr
+
+		div#upload-pic
+			link(href='/fileupload/css/fileinput.min.css', media='all', rel='stylesheet', type='text/css')
+			script(src='/fileupload/js/fileinput.min.js')
+			//
+			//	optionally if you need translation for your language then include
+			//	locale file as mentioned below
+			//	script(src='path/to/js/fileinput_locale_<lang>.js')
+
+			input#pic-uploader(type='file', name='files[]', accept='image/*', multiple)
+			
+	script init.profile()

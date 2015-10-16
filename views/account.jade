@@ -1,0 +1,25 @@
+extends html
+
+block body
+	div.container#account(ng-controller="AccountCtrl", userid=req.user.id)
+		.panel.panel-primary
+			.panel-heading Account Settings
+			form.panel-body.row
+				.hidden-xs.col-sm-6
+					img.img-responsive(src='img/refraction.jpg')
+				.col-xs-12.col-sm-6
+					
+					.form-group
+						label(for='email') Email
+						input#inputEmail.form-control(type='email', placeholder='Email', ng-model="user.email")
+					hr
+
+					.form-group
+						label(for='current-password')  Current Password 
+						input#current-password.form-control(type='password', placeholder='Password', ng-model="oldPassword")
+
+					.form-group
+						label(for='new-password')  New Password 
+						input#new-password.form-control(type='password', placeholder='Password', ng-model="newPassword")
+
+					button.btn.btn-primary(ng-click="updatePassword()")  Update

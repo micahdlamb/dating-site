@@ -1,0 +1,81 @@
+extends html
+
+block body
+	div.container-fluid#search(ng-controller="SearchCtrl")
+		div#search-settings(ng-cloak)
+			.row
+				.col-xs-2
+					ul.nav.nav-pills
+						li.active(role='presentation')
+							a(href="#list-view", role='tab', data-toggle='tab') List
+						li(role='presentation')
+							a(href="#map-view", role='tab', data-toggle='tab') Map
+
+				form.col-xs-8
+					.row
+						.col-md-5
+							div.input-group
+								span.input-group-addon Looking for
+								select(selectpicker="", ng-model="query.isa", ng-change="search()", multiple, required, data-max-options='3', data-width='auto')
+									option(value='man') Man
+									option(value='woman') Woman
+									option(value='couple') Couple
+
+						.col-md-4
+							div.input-group
+								select(selectpicker="", ng-model="query.olderThan", ng-change="search()", data-max-options='1', data-width='auto')
+									option(ng-repeat="age in ages") {{age}}
+								span.input-group-addon
+									span.glyphicon.glyphicon-chevron-left
+									span  age 
+									span.glyphicon.glyphicon-chevron-left
+								select(selectpicker="", ng-model="query.youngerThan", ng-change="search()", data-max-options='1', data-width='auto')
+									option(ng-repeat="age in ages") {{age}}
+
+						.col-md-3
+							div.input-group
+								span.input-group-addon within
+								select(selectpicker="", ng-model="query.withinKm", ng-change="search()", data-max-options='1', data-width='auto')
+									option(selected) 5
+									option 20
+									option 50
+									option 100
+								span.input-group-addon km
+
+					.row.text-center#row-2
+						.col-xs-12
+							.checkbox
+								label
+									input(ng-model="query.requireImage", ng-change="search()", type='checkbox')
+									span Require image
+							.checkbox
+								label
+									input(ng-model="query.useCurrentLocation", ng-change="search()", type='checkbox')
+									span Use current location
+
+				.col-xs-2
+					button.btn.btn-primary.btn-block(ng-click="search()") Search
+
+		hr
+
+		div.tab-content
+			div.tab-pane.fade.in.active#list-view
+				.container(ng-cloak)
+					.alert.alert-info(ng-hide="!didSearch || results.length") Nobody found :(
+					.row
+						.col.col-lg-2.col-sm-3.col-xs-4(ng-repeat="user in results")
+							a(href='/view-user?userid={{user._id}}', title='{{user.name}}')
+								img.img-responsive(src='{{user.pic}}', alt='{{user.name}}')
+	
+			//Map
+			div.tab-pane.fade#map-view
+				.container
+					div.embed-responsive.embed-responsive-16by9#map-canvas
+					br
+					form#gotoLocation
+						div.input-group
+							input.form-control(type='text', placeholder="Enter address...")
+							span.input-group-btn
+								button.btn.btn-primary(type='submit') Go
+
+	script init.search()

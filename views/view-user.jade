@@ -1,0 +1,26 @@
+extends html
+
+block body
+	-var userid = req.query.userid || req.user.id
+	div.container#view-user(ng-controller="ViewUserCtrl", userid=userid)
+		.page-header
+			h1 {{user.name}}
+		//Bio
+		.row
+			.col-xs-6
+				carousel(interval='3000')
+					slide(ng-repeat="pic in user.pics", active="pic.active")
+						img(ng-src="{{pic.url}}", style="margin:auto;")
+						div.carousel-caption
+							p {{pic.caption}}
+
+			.col-xs-6
+				h3 About
+				p.well.well-lg {{user.about}}
+				h3 Looking For
+				p.well.well-lg {{user.lookingFor}}
+
+		hr
+
+		if (userid != req.user.id)
+			button.btn.btn-primary.center-block(type='button', ng-click="startConvo()") Message

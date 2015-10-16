@@ -1,0 +1,263 @@
+// OVERRIDE BOOTSTRAP //////////////////////////////////////////////////////////
+
+// ALL /////////////////////////////////////////////////////////////////////////
+@import "chat"
+
+a
+	cursor: pointer
+
+.page-header
+	margin-top 0
+
+// For ui.bootstrap
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+
+// Angular Animations///////////////////////////////////////////////////////////
+
+.ng-enter,
+.ng-leave,
+.ng-move {
+	-webkit-transition: all linear .5s;
+	-moz-transition: all linear .5s;
+	-o-transition: all linear .5s;
+	transition: all linear .5s;
+		 
+	//position:relative;
+	//left:5px;
+}
+.ng-enter {
+	opacity: 0;
+}
+.ng-enter.ng-enter-active {
+	opacity: 1;
+}
+.ng-leave {
+	//opacity: 1;
+	opacity: 0;
+}
+.ng-leave.ng-leave-active {
+	opacity: 0;
+}
+.ng-move {
+	left:2px;
+	opacity: 0.5;
+}
+.ng-move.ng-move-active {
+	left:0;
+	opacity: 1;
+}
+
+/*
+body
+	background: url(http://static.hdw.eweb4.com/media/wallpapers_1920x1200/fantasy/1/1/outer-space-fantasy-hd-wallpaper-1920x1200-6665.jpg) no-repeat center center fixed
+	background-size: cover
+
+.navbar-inverse .container
+	background-color: #222
+
+.container, .container-fluid
+	background: white
+*/
+
+// NAV /////////////////////////////////////////////////////////////////////////
+body
+	padding-top: 70px
+
+.navbar-inverse
+	.navbar-brand:hover, .navbar-brand:focus, .navbar-brand.active
+		color #BAF
+		//text-shadow 0px 0px 3px rgba(187, 170, 255, 1)
+
+// FOOTER //////////////////////////////////////////////////////////////////////
+html
+	position: relative
+	min-height: 100%
+
+body
+	margin-bottom: 70px
+
+footer
+	position: absolute
+	bottom: 0
+	width: 100%
+	padding: 20px
+	height: 60px
+	background-color: #f5f5f5
+	text-align: center
+
+// HOME ////////////////////////////////////////////////////////////////////////
+#home
+	.messages
+		img
+			width: 50px
+			margin-right: 20px
+
+// PROFILE /////////////////////////////////////////////////////////////////////
+#profile #pics div
+	vertical-align: top
+	display inline-block
+	margin 10px
+	width 200px
+
+// SEARCH //////////////////////////////////////////////////////////////////////
+#search-settings .nav-pills
+	line-height 1
+	
+#row-2 .checkbox
+	display inline-block
+	margin 5px 15px
+
+// TOAST MESSAGE COLORIZING ////////////////////////////////////////////////////
+.toast-item
+	a
+		color: #55F
+	b
+		color: #5F5
+	i
+		font-style: normal
+		color: #A8F
+	p img
+		width 50px
+		margin-right: 10px
+
+// Image Gallery ///////////////////////////////////////////////////////////////
+.pics.slider
+	border 15px solid #FFFFFF
+	border-radius 5px
+	height 500px
+	position relative
+	perspective 1000px
+	transform-style preserve-3d
+	.slide
+		position absolute
+		top 0
+		left 0
+		right 0
+		max-width: 100%
+		max-height: 100%
+		margin 0 auto
+		&.ng-hide-add-active
+			display block !important
+			opacity 1
+			transition 1s linear all
+			transform rotateX(50deg) rotateY(30deg)
+			transform-origin right top 0
+			&.ng-hide-add-active
+				opacity 0
+		&.ng-hide-remove
+			transition 1s linear all
+			display block!important
+			opacity 0
+
+	.slide, .slide.ng-hide-remove.ng-hide-remove-active
+		opacity 1
+
+	.arrow
+		cursor pointer
+		display block
+		height 64px
+		margin-top -35px
+		outline medium none
+		position absolute
+		top 50%
+		width 64px
+		z-index 5
+		&.prev
+			background-image url("../img/prev.png")
+			left 20px
+			opacity 0.2
+			transition all 0.2s linear 0s
+			&:hover
+				opacity 1
+		&.next
+			background-image url("../img/next.png")
+			opacity 0.2
+			right 20px
+			transition all 0.2s linear 0s
+			&:hover
+				opacity 1
+
+	.nav
+		bottom -10px
+		left 0
+		right 0
+		margin 0 auto
+		padding 1em 0 0.8em
+		position absolute
+		text-align center
+		width 100%
+		z-index 5
+		li
+			border 2px solid black
+			border-radius 5px
+			cursor pointer
+			display inline-block
+			margin 0 8px
+			position relative
+			width 50px
+			&.active
+				border 2px solid #AFA
+			img
+				width 100%
+
+// <Off Canvas> (used by search,) //////////////////////////////////////////////
+@media screen and (max-width: 767px) {
+	.row-offcanvas {
+		position: relative;
+		-webkit-transition: all .25s ease-out;
+				 -o-transition: all .25s ease-out;
+						transition: all .25s ease-out;
+	}
+
+	.row-offcanvas-right {
+		right: 0;
+	}
+
+	.row-offcanvas-left {
+		left: 0;
+	}
+
+	.row-offcanvas-right .sidebar-offcanvas {
+		right: -50%; /* 6 columns */
+	}
+
+	.row-offcanvas-left .sidebar-offcanvas {
+		left: -50%; /* 6 columns */
+	}
+
+	.row-offcanvas-right.active {
+		right: 50%; /* 6 columns */
+	}
+
+	.row-offcanvas-left.active {
+		left: 50%; /* 6 columns */
+	}
+
+	.sidebar-offcanvas {
+		position: absolute;
+		top: 0;
+		width: 50%; /* 6 columns */
+	}
+}
+
+.sidebar-offcanvas
+	.list-group > .active > a,
+	.list-group > .active > a:hover,
+	.list-group > .active > a:focus {
+		color: #fff;
+		background-color: #428bca;
+	}
+
+	.list-group-item
+		padding 0
+
+// What is this?
+.gm-style-iw
+	&: > div
+		overflow hidden !important
+	img
+		max-width 300px
+		display block
+
+//</Off Canvas>

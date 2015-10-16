@@ -1,0 +1,47 @@
+.chat-bar(ng-controller="ChatBarCtrl", userid=req.user.id)
+	.row.active-convos
+		.col-xs-12.col-md-6.col-lg-4(ng-repeat="convo in activeConvos", ng-class="{3: 'hidden-xs hidden-sm hidden-md', 2: 'hidden-xs hidden-sm', 1: ''}[activeConvos.length-$index]")
+			.panel.panel-default.chat-window
+				.panel-heading.top-bar
+					.col-md-8.col-xs-8
+						h3.panel-title
+							span.glyphicon.glyphicon-comment
+							|  Chat - {{convo.other.name}}
+					.col-md-4.col-xs-4(style='text-align: right;')
+						a(href='#')
+							span.minim_chat_window.glyphicon.icon_minim(ng-class="convo.minimized ? 'glyphicon-plus panel-collapsed' : 'glyphicon-minus'", ng-click="convo.minimized = !convo.minimized")
+						a(href='#')
+							span.glyphicon.glyphicon-remove.icon_close(ng-click="deactivate(convo)")
+				.panel-body.msg_container_base(ng-show="!convo.minimized", scroll-glue='convo.glued')
+
+					.row.msg_container(ng-repeat="msg in convo.messages", ng-class="msg.from==convo.user?'base_sent':'base_receive'")
+						div(ng-if="msg.from==convo.user")
+							.col-md-10.col-xs-10
+								.messages.msg_sent
+									p {{msg.text}}
+									time(datetime='{{msg.time}}')
+										span {{msg.from.name}} • 
+										span(am-time-ago="msg.time")
+							.col-md-2.col-xs-2.avatar
+								img.img-responsive(src='{{msg.from.pic}}')
+						div(ng-if="msg.from==convo.other")
+							.col-md-2.col-xs-2.avatar
+								img.img-responsive(src='{{msg.from.pic}}')
+							.col-md-10.col-xs-10
+								.messages.msg_receive
+									p {{msg.text}}
+									time(datetime='{{msg.time}}')
+										span {{msg.from.name}} • 
+										span(am-time-ago="msg.time")
+
+				.panel-footer
+					.input-group
+						input#btn-input.form-control.input-sm.chat_input(ng-model="convo.text", ng-keyup="$event.keyCode == 13 && send(convo)", type='text', placeholder='Write your message here...')
+						span.input-group-btn
+							button#btn-chat.btn.btn-primary.btn-sm(ng-click="send(convo)") Send
+	ui.all-convos.nav.list-group
+		li.list-group-item(ng-repeat="convo in allConvos", ng-class="{'active': convo.active}")
+			a(ng-click="toggle(convo)")
+				img(src="{{convo.other.pic}}")
+				span {{convo.other.name}}
+						

@@ -1,0 +1,21 @@
+extends html
+
+block body
+	div.container#home(ng-controller="HomeCtrl", userid=req.user.id)
+		.page-header
+			h1 Home Page for User
+		img.img-responsive(src='img/glass-balls.png')
+		br
+		.panel.panel-primary
+			.panel-heading Send message to all site visitors => #{JSON.stringify(_.pluck(onlineUsers, 'name'))}
+			.panel-body
+				form#notifyAll.clearfix
+					.form-group
+						label.sr-only(for='broadcastInput') Message
+						textarea.form-control(ng-model='text', type='text', id='broadcastInput', placeholder='Enter Message')
+					button.btn.btn-primary.pull-right(ng-click="broadcast()") Broadcast
+				br
+				div.messages
+					div(ng-repeat="msg in messages | orderBy: '-time'", class='alert', ng-class="msg.from==user?'alert-info':'alert-warning'")
+						img(src="{{msg.from.pic}}")
+						span {{msg.text}}

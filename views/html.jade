@@ -1,0 +1,98 @@
+doctype html
+html(lang="en")
+	head
+		block head
+			block title
+				title Free Swinger Finder
+			//meta
+			meta(name='description', content='Find sex')
+			meta(name='viewport', content="width=device-width, initial-scale=1")
+			link(rel="shortcut icon", href="/favicon.ico")
+
+			//jquery
+			script(src='//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+
+			//bootstrap
+			link(rel='stylesheet', href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+			link(ref='stylesheet', href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css")
+			script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+
+			//bootstrap extras
+			link(rel='stylesheet', href='css/bootstrap-select.min.css')
+			script(src='js/bootstrap-select.min.js')
+
+			//angularjs
+			script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js")
+			script(src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js")
+			script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-animate.min.js")
+			script(src="//code.angularjs.org/1.2.0rc1/angular-touch.min.js")
+			script(src="js/angular-bootstrap-select.js")
+			script(src="js/geolocation.js")
+
+			script(src="js/scrollglue.js")
+
+			//google maps
+			script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyDVQqC0c5jT0G60zFZTBl1n6lDWmz-wwLQ")
+			//script(src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble-compiled.js")
+			//script(src="//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js")
+			script(src="//rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.min.js")
+
+			//moment
+			script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js")
+			script(src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.1/angular-moment.min.js")
+
+			//toast message
+			link(rel='stylesheet', href='/css/jquery.toastmessage.css')
+			script(src='/js/jquery.toastmessage.js')
+
+			//scrollTo
+			script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/1.4.3/jquery.scrollTo.min.js')
+
+			//fancybox
+			link(rel='stylesheet', href='/fancybox/jquery.fancybox.css')
+			//script(src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.pack.js')
+			script(src='/fancybox/jquery.fancybox.pack.js')
+
+			//jcrop
+			//link(rel='stylesheet', href='/jcrop/css/jquery.Jcrop.min.css')
+			//script(src='/jcrop/js/jquery.Jcrop.min.js')
+
+			//moment (for dates)
+			//script(src='//cdnjs.cloudflare.com/ajax/libs/moment.js/1.7.2/moment.min.js ')
+
+			//underscore
+			script(src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js ')
+
+			//captcha
+			//script(src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js')
+
+			//util
+			//script(src='/js/purl.js')
+			//-script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-url-parser/2.2.1/purl.min.js')
+			//script(src='/js/jquery.cookie.js')
+			//-script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.3.1/jquery.cookie.min.js')
+
+			//socket.io
+			//script(src='//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js')
+			script(src='/socket.io/socket.io.js')
+
+			//traverse
+			script(src='/js/traverse.js')
+
+			//google maps
+			//script(src='http://maps.googleapis.com/maps/api/js?sensor=false')
+
+			//mine
+			script(src='/js/util.js')
+			link(rel='stylesheet', href="/css/app.css")
+			script(src='/js/app.js')
+
+	body(role='document', ng-app="App")
+		script init(!{JSON.stringify(config.public)})
+		block begin
+		include nav
+		block body
+		if (req.user)
+			include chat-bar
+		include footer
+		block end

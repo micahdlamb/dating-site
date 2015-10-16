@@ -1,0 +1,112 @@
+doctype html
+html(lang="en")
+	head
+		title Resume - Micah Lamb
+		style.
+			body {
+				font-family: arial;
+			}
+			h1 {
+				font-family: cambria;
+				text-align: center;
+				margin-bottom: 5px;
+			}
+			.contact {
+				text-align: center;
+			}
+			h2 {
+				font-family: cambria;
+				text-align: center;
+				border-top: 1px solid black;
+				padding-top: 5px;
+				margin-top: 15px;
+			}
+			h4 {
+				margin: 15px 0 5px
+			}
+
+			.indent {
+				margin-left: 30px;
+			}
+			ul {
+				margin: 0;
+				padding-left: 30px;
+			}
+			li {
+				padding-left: 10px;
+				margin-bottom: 10px;
+			}
+			.school .city {
+				font-weight: normal;
+			}
+			.degree {
+				font-style: italic;
+			}
+			.position {
+				font-weight: normal;
+				font-style: italic;
+			}
+			.dates {
+				font-weight: normal;
+			}
+			
+
+	body
+		h1 Micah Lamb
+		.contact 110 E Dallas Ave &bull; Madison Heights, MI &bull; 740 407 7509 &bull; micah.d.lamb@gmail.com
+		h2 Education
+		h3.school
+			span.name The Ohio State University - 
+			span.city Columbus, Ohio
+		.indent
+			.degree M.S. Computer Science, 5/2013 (GPA: 3.77/4)
+			h4 Courses
+			span Ray Tracing, Network Security, Advanced Databases, Real-time Rendering with OpenGL 4.x, Artificial Intelligence, Geometric Modeling, Operating Systems / Distributed Computing, Compilers, Neural Networks, Design and Analysis of Algorithms, Programming Languages, Advanced Computer Graphics
+			h4 Notable Projects
+			ul
+				li Implemented a variety of graphics concepts including: CPU/GPU ray tracing, volume rendering, soft shadows, tessellation shaders, realistic skin rendering, beziers, bsplines and other subdivision surfaces.
+				li Built a compiler for a simplified C like language.  Performed analysis of control flow and data dependencies on the generated 3 address code.
+				li Created a lisp interpreter.
+		h3.school
+			span.name Ohio University - 
+			span.city Athens, Ohio
+		.indent
+			.degree B.S. Computer Science, 6/2008
+		h2 Summary of Qualifications
+		ul
+			li Experience programming in a number of languages including: Python (expert), C/C++ (expert), Java (proficient), Node.js/Javascript (expert), PHP (expert), LUA (expert), SQL (expert), HTML/CSS (expert), OpenGL/GLSL (expert), Cold Fusion (proficient), ActionScript (proficient), CUDA (beginner).  I can easily learn whatever is required for the task at hand.
+			li Proficient with the MEAN (MongoDB, Express, AngularJS, Node.js) stack + Bootstrap.
+		h2 Professional Experience
+		h3
+			span.company Altair - 
+			span.position Software Developer for 
+				a(href="http://www.solidthinking.com/ProductOverview.aspx?item=Inspire") Inspire, 
+			span.dates Oct 2014 – Now
+		ul
+			li Developed a pythonic wrap of the core c++ data model and added the ability to easily extend it with new classes in python.  Unlike existing c++ classes these objects worked automatically throughout the gui. This required several additions to the core model and gui code to support polymorphic behavior.
+			li Worked on the development a pythonic gui framework wrapping existing c++ code for creating widgets (dialogs, menus, forms, etc), OpenGL graphics creation and interaction through the graphics window.  This greatly simplified future plugin development by providing simple intuitive interfaces, documentation/demos and drastic reductions in the amount of code required to create common workflows.  This framework was also used by other teams in the company for different products and will be used by users to customize Inspire through plugins.
+			li Used above frameworks to create a multibody dynamics plugin bringing motion simulation to Inspire.  This required close cooperation with engineers to develop new objects, gui and interface with the solver.
+		h3
+			span.company S2 Games - 
+			span.position PHP/Web Developer, 
+			span.dates Jun 2013 – Sept. 2013
+		ul
+			li Developed several additions/fixes to the online systems framework to support new game client features.
+			li Created a couple forms for the strife.com website.
+		
+		h3
+			span.company Schedule Star - 
+			span.position Web Developer, 
+			span.dates July 2007 – Aug. 2009
+		ul
+			li Developed several additions to the core Schedule Star program used by thousands of schools nationwide to manage high school sport events.  This involved the creation of a variety of flash based forms.
+			li Designed and built a variety of web pages on HighSchoolSports.net, the most visited website for high school sports.
+			li Developed a video upload system used by high school students and and local media to manage and display clips from sport events.
+			li Rewrote a site used to manage athletes and record statistical information about several types of sport events (using ExtJs).  Brought several multi thousand line files down to hundreds by applying good code practices.
+			li Created and worked with several web services used to exchange information between partner companies.
+		h3
+			span.company First Energy Corp - 
+			span.position Asset Utilization Dept (intern), 
+			span.dates July 2005 – Dec. 2005
+		ul
+			li Programmed a number of daily reports related to forecasting electric load and fuel prices.

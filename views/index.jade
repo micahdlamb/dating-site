@@ -1,0 +1,53 @@
+extends html
+
+block body
+	div.container
+		.row
+			div.col-xs-6
+				div(ng-controller="CarouselCtrl")
+					carousel(interval='3000')
+						slide(ng-repeat="slide in slides", active="slide.active")
+							img(ng-src="{{slide.image}}", style="margin:auto;")
+							div.carousel-caption
+								p {{slide.text}}
+
+				hr
+				h2 Date Now
+					small  Find a lover here
+				p Mongo - Express - Angular - Node Demo
+				p
+					a.btn.btn-primary.btn-lg(role="button", data-toggle='modal', data-target='#myModal') Learn more
+				
+				//Modal 
+				#myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+					.modal-dialog
+						.modal-content
+							.modal-header
+								button.close(type='button', data-dismiss='modal')
+									span(aria-hidden='true') ×
+									span.sr-only Close
+								h4#myModalLabel.modal-title Video Explanation Goes Here
+							.modal-body
+								| ...
+								img.img-responsive(src='img/refraction.jpg')
+							.modal-footer
+								button.btn.btn-default(type='button', data-dismiss='modal') Close
+								button.btn.btn-primary(type='button') Save changes
+			div.col-xs-6(ng-controller="CreateUserCtrl")
+				.panel.panel-primary
+					.panel-heading Sign Up
+					form.panel-body
+						.form-group
+							label(for='create-name') Username
+							input#create-name.form-control(ng-model="name", placeholder='Username')
+						.form-group
+							label(for='create-password') Password
+							input#create-password.form-control(ng-model="password", type='Password', placeholder='Password')
+						button.btn.btn-primary(type='button', ng-click="submit()") Sign Up
+				hr
+				.text-center
+					a(ng-click="startDemo()") Login to demo account
+				hr
+				.text-center
+					a(href='/auth/facebook')
+						img(src='img/login-with-facebook.png')
